@@ -33,7 +33,7 @@ jobs:
             release-artifacts/*.blockmap `
             release-artifacts/latest.yml `
             --verify-tag `
-            --generate-notes `
+            --notes-file RELEASE_NOTES.md `
             --title "$env:GITHUB_REF_NAME"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
