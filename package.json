@@ -1,0 +1,43 @@
+{
+  "name": "bilibili-learning-version",
+  "version": "0.2.0",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "description": "BiliBili Learning Version - a focused Windows learning client for Bilibili content.",
+  "main": "electron/main.cjs",
+  "productName": "BiliBili Learning Version",
+  "author": "BiliBili Learning Version",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .\"",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "check": "pnpm test && pnpm build",
+    "start": "electron .",
+    "package:win": "pnpm build && cross-env NODE_OPTIONS=--use-system-ca electron-builder --config electron-builder.config.cjs --win nsis --x64",
+    "package:dir": "pnpm build && cross-env NODE_OPTIONS=--use-system-ca electron-builder --config electron-builder.config.cjs --win dir --x64",
+    "publish:win": "pnpm build && cross-env NODE_OPTIONS=--use-system-ca electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish always",
+    "smoke:packaged": "node scripts/smoke-packaged.cjs"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.11"
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "4.3.2",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "@vitejs/plugin-react": "6.3.0",
+    "concurrently": "9.1.2",
+    "cross-env": "7.0.3",
+    "electron": "45.4.1",
+    "electron-builder": "26.18.0",
+    "harmonyos-sans-sc-webfont-splitted": "1.1.0",
+    "lucide-react": "0.476.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "typescript": "5.7.3",
+    "vite": "8.3.8",
+    "vitest": "5.1.1",
+    "wait-on": "8.0.3"
+  }
+}

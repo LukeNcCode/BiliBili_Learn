@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "name": "程序设计学习清单",
+  "description": "按基础、进阶和项目实践组织的程序设计课程。",
+  "goal": "从零学习编程",
+  "courses": [
+    {
+      "id": "python-foundations",
+      "title": "Python 基础",
+      "description": "从语法、函数到第一个项目。",
+      "cover": "",
+      "author": "BiliBili Learning Version",
+      "sections": [
+        {
+          "id": "python-start",
+          "title": "入门篇",
+          "lessons": [
+            {
+              "id": "python-guide",
+              "title": "Python 从 0 到 1 学习指南",
+              "bvid": "BV1rpWjevEip"
+            },
+            {
+              "id": "python-fast",
+              "title": "3 小时快速入门 Python",
+              "url": "https://www.bilibili.com/video/BV1Jgf6YvE8e",
+              "duration": 11843
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
