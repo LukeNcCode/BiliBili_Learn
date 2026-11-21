@@ -22,6 +22,18 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
-      - run: pnpm exec cross-env NODE_OPTIONS=--use-system-ca electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish always
+      - run: pnpm exec cross-env NODE_OPTIONS=--use-system-ca electron-builder --config electron-builder.config.cjs --win nsis --x64 --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish GitHub Release
+        shell: pwsh
+        run: |
+          gh release create "$env:GITHUB_REF_NAME" `
+            release-artifacts/*.exe `
+            release-artifacts/*.blockmap `
+            release-artifacts/latest.yml `
+            --verify-tag `
+            --generate-notes `
+            --title "$env:GITHUB_REF_NAME"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
