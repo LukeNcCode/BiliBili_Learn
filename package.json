@@ -1,6 +1,6 @@
 {
   "name": "bilibili-learning-version",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "packageManager": "pnpm@11.25.0",
   "description": "BiliBili Learning Version - a focused Windows learning client for Bilibili content.",

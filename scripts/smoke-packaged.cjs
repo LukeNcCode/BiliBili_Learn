@@ -11,7 +11,7 @@ const child = spawn(executable, [], {
   env: {
     ...process.env,
     STUDYFLOW_CAPTURE: path.resolve("packaged-runtime.png"),
-    STUDYFLOW_CAPTURE_VIEW: "creator",
+    STUDYFLOW_CAPTURE_VIEW: "settings",
     STUDYFLOW_CAPTURE_DELAY: "2000",
   },
   stdio: "inherit",

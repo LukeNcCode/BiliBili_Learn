@@ -1,7 +1,10 @@
+const {
+  DEFAULT_UPDATE_REPOSITORY,
+} = require("./electron/update-repository.cjs");
 const updateRepository =
   process.env.BILIBILI_LEARNING_UPDATE_REPOSITORY ||
   process.env.GITHUB_REPOSITORY ||
-  "";
+  DEFAULT_UPDATE_REPOSITORY;
 
 const [updateOwner, updateRepo] = updateRepository.split("/");
 const hasUpdateRepository = Boolean(updateOwner && updateRepo);

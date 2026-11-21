@@ -57,9 +57,8 @@ manual check in **Settings → Software updates**. Updates use the standard
 electron-builder NSIS updater, download `latest.yml` and the differential
 installer, and restart through the installer after confirmation.
 
-The release repository is embedded at build time. Local builds without release
-configuration keep the update UI disabled. To bind a local build to a GitHub
-repository:
+Official builds default to `LukeNcCode/BiliBili_Learn`. Forks can override the
+release repository at build time:
 
 ```powershell
 $env:BILIBILI_LEARNING_UPDATE_REPOSITORY = "owner/BiliBili-Learning-Version"

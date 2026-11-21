@@ -234,11 +234,23 @@ function createMainWindow() {
         await new Promise((resolve) => setTimeout(resolve, 5000));
       } else if (process.env.STUDYFLOW_CAPTURE_VIEW === "lists") {
         await mainWindow.webContents.executeJavaScript(`
-          [...document.querySelectorAll('.desktop-nav button')]
+          [...document.querySelectorAll('.sidebar-primary button')]
             .find((button) => button.textContent?.includes('学习清单'))
             ?.click()
         `);
         await new Promise((resolve) => setTimeout(resolve, 1200));
+      } else if (process.env.STUDYFLOW_CAPTURE_VIEW === "settings") {
+        await mainWindow.webContents.executeJavaScript(`
+          [...document.querySelectorAll('.sidebar-primary button')]
+            .find((button) => button.textContent?.includes('设置'))
+            ?.click()
+        `);
+        await new Promise((resolve) => setTimeout(resolve, 1200));
+        await mainWindow.webContents.executeJavaScript(`
+          document.querySelector('.update-settings-card')
+            ?.scrollIntoView({ block: 'center' })
+        `);
+        await new Promise((resolve) => setTimeout(resolve, 500));
       } else if (process.env.STUDYFLOW_CAPTURE_VIEW === "creator") {
         await mainWindow.webContents.executeJavaScript(
           "window.studyflow?.openCreatorStudio()",

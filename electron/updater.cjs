@@ -2,6 +2,10 @@ const path = require("path");
 const { app, ipcMain } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const { assertTrustedIpcSender } = require("./security.cjs");
+const {
+  DEFAULT_UPDATE_REPOSITORY,
+  normalizeRepository,
+} = require("./update-repository.cjs");
 
 function readPackagedMetadata() {
   try {
@@ -11,27 +15,14 @@ function readPackagedMetadata() {
   }
 }
 
-function normalizeRepository(value) {
-  if (!value) return "";
-  const raw =
-    typeof value === "string"
-      ? value
-      : typeof value.url === "string"
-        ? value.url
-        : "";
-  const match = raw.match(
-    /github\.com[/:]([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?(?:[/#?]|$)/i,
-  );
-  return match ? `${match[1]}/${match[2]}` : "";
-}
-
 function resolveUpdateRepository() {
   const metadata = readPackagedMetadata();
   return normalizeRepository(
     process.env.BILIBILI_LEARNING_UPDATE_REPOSITORY ||
       process.env.GITHUB_REPOSITORY ||
       metadata.updateRepository ||
-      metadata.repository,
+      metadata.repository ||
+      DEFAULT_UPDATE_REPOSITORY,
   );
 }
 
